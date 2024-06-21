@@ -1,0 +1,50 @@
+/* drug interaction page styles  */
+body {
+  background-color: #FFF9D0;
+}
+#app-logo {
+  height: 50px;
+  color: red;
+}
+.nav-link {
+  color: black;
+  transition: color 0.3s, background-color 0.3s;
+  background-color: transparent;
+}
+.nav-link:hover {
+  color: white;
+  background-color: #5AB2FF;
+}
+.nav-link.active {
+  color: black;
+  background-color: transparent;
+}
+.nav-link.active:hover {
+  background-color: #5AB2FF;
+  color: white;
+}
+.ddi-btn {
+  background-color: #5AB2FF;
+  border: none;
+}
+ /* authentication page styles */
+ .signin-btn {
+  background-color: #5AB2FF;
+  border: none;
+ }
+.signin-btn:hover {
+  opacity: 80%;
+}
+
+/* form page styles */
+.form-head {
+  color: rgba(41, 43, 46, 0.893);
+}
+.submit-btn {
+  background-color: #5AB2FF;
+  border: none;
+ }
+.submit-btn:hover {
+  opacity: 80%;
+}
+
