@@ -1,8 +1,10 @@
 # DrugGuardianPro
 ## Steps to wrap the website in an Electron application:
 1- Open the terminal, navigate into the project directory, and run the following line:
+
     npm init -y
 2- Install Electron as a development dependency in your project:
+
     npm install electron --save-dev
 3- Create the following files in the root of the project directory:
 - main.js
@@ -10,6 +12,7 @@
 - package.json
 
 4- main.js:
+
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
@@ -43,11 +46,13 @@ app.on('activate', () => {
 });
 
 5- preload.js:
+
 window.addEventListener('DOMContentLoaded', () => {
   // Code to run before renderer process
 });
 
 6- package.json:
+
 {
   "name": "drugguardianpro",
   "version": "1.0.0",
@@ -66,6 +71,7 @@ window.addEventListener('DOMContentLoaded', () => {
 }
 
 7- Open the terminal, and run the following line:
+
     npm start
 
 
