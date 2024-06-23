@@ -14,6 +14,7 @@
 4- main.js:
 
 const { app, BrowserWindow } = require('electron');
+
 const path = require('path');
 
 function createWindow() {
@@ -54,12 +55,14 @@ window.addEventListener('DOMContentLoaded', () => {
 6- package.json:
 
 {
+
   "name": "drugguardianpro",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
+    
   },
   "keywords": [],
   "author": "",
@@ -67,6 +70,7 @@ window.addEventListener('DOMContentLoaded', () => {
   "description": "",
   "dependencies": {
     "electron": "^31.0.2"
+    
   }
 }
 
