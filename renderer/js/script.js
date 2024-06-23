@@ -35,7 +35,7 @@ $(document).ready(function() {
         formData.append('password', password);
 
         $.ajax({
-            url: 'http://localhost:8000/account/login',
+            url: 'http://api.drugguardian.net/account/login',
             method: 'POST',
             processData: false,
             contentType: false,
@@ -61,7 +61,7 @@ $(document).ready(function() {
         const formData = new FormData(this);
 
         $.ajax({
-            url: 'http://localhost:8000/submit-request',
+            url: 'http://api.drugguardian.net/submit-request',
             method: 'POST',
             data: formData,
             processData: false,
