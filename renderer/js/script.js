@@ -80,11 +80,11 @@ $(document).ready(function() {
 // Wait for the DOM to fully load before running the script
 document.addEventListener('DOMContentLoaded', (event) => {
     // Get references to the necessary DOM elements
-    const drugInput = document.getElementById('drug-input');
-    const addDrugBtn = document.getElementById('add-drug-btn');
-    const drugList = document.getElementById('drug-list');
-    const checkInteractionsBtn = document.getElementById('check-interactions-btn');
-    const interactionResults = document.getElementById('interaction-results');
+    const drugInput = document.getElementById('drug_input');
+    const addDrugBtn = document.getElementById('add_drug_btn');
+    const drugList = document.getElementById('drug_list');
+    const checkInteractionsBtn = document.getElementById('check_interactions_btn');
+    const interactionResults = document.getElementById('interaction_results');
 
     // Initialize a counter to keep track of the number of drug entries
     let count = 0;
