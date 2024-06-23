@@ -30,14 +30,16 @@ $(document).ready(function() {
         const username = $('#username').val();
         const password = $('#password').val();
 
+        const formData = new FormData();
+        formData.append('username', username);
+        formData.append('password', password);
+
         $.ajax({
             url: 'http://localhost:8000/account/login',
             method: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                username: username,
-                password: password
-            }),
+            processData: false,
+            contentType: false,
+            data: formData,
             success: function(data) {
                 alert('Login successful: ' + data.username);
                 // Redirect or perform actions after successful login
@@ -47,11 +49,6 @@ $(document).ready(function() {
             }
         });
     });
-});
-
-
-document.getElementById('email').addEventListener('focus', function() {
-    console.log('Email input focused');
 });
 
 // chemical-org.html (request form) connection
