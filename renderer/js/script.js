@@ -78,78 +78,25 @@ $(document).ready(function() {
 
 // drug-interaction.html connection
 
-// Wait for the DOM to fully load before running the script
-document.addEventListener('DOMContentLoaded', (event) => {
-    // Get references to the necessary DOM elements
-    const drugInput = document.getElementById('drug_input');
-    const addDrugBtn = document.getElementById('add_drug_btn');
-    const drugList = document.getElementById('drug_list');
-    const checkInteractionsBtn = document.getElementById('check_interactions_btn');
-    const interactionResults = document.getElementById('interaction_results');
+$(document).ready(function() {
+    $('#synergyForm').on('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
 
-    // Initialize a counter to keep track of the number of drug entries
-    let count = 0;
-    const maxEntries = 3; // Define the maximum number of drug entries allowed
+        const formData = new FormData(this); // Create a FormData object from the form
 
-    // Event listener for the "Add" button click event
-    addDrugBtn.addEventListener('click', () => {
-        // Check if the current count is less than the maximum allowed entries
-        if (count < maxEntries) {
-            const value = drugInput.value; // Get the input value
-            if (value) {
-                // If there is a value, create a new div to display the drug
-                const newDiv = document.createElement('div');
-                newDiv.textContent = value; // Set the text content to the input value
-                drugList.appendChild(newDiv); // Append the new div to the drug list
-                count++; // Increment the counter
-                drugInput.value = ''; // Clear the input field
-            } else {
-                alert('Please enter a value.'); // Alert if the input field is empty
+        $.ajax({
+            url: 'http://api.drugguardian.net//predictSynergy', 
+            method: 'POST', // Use POST method
+            data: formData, // Send the form data
+            processData: false, // Do not process data
+            contentType: false, // Do not set content type
+            success: function(data) {
+                $('#synergy_results').html('<div class="alert alert-success">Synergy score: ' + data.synergy_score + '</div>'); // Display the synergy score
+            },
+            error: function() {
+                $('#synergy_results').html('<div class="alert alert-danger">Failed to predict the synergy score</div>'); // Display error message
             }
-        } else {
-            alert('You have reached the maximum number of entries.'); // Alert if max entries reached
-        }
-    });
-
-    // Event listener for the "Check Interactions" button click event
-    checkInteractionsBtn.addEventListener('click', async () => {
-        // Ensure at least two drugs have been added before checking interactions
-        if (drugs.length < 2) {
-            alert("Please add at least two drugs to check interactions.");
-            return;
-        }
-
-        try {
-            // Send a POST request to the backend with the list of drugs
-            const response = await fetch('http://api.drugguardian.net/interaction', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ drugs: drugs }) // Convert the drugs array to a JSON string
-            });
-
-            const data = await response.json(); // Parse the JSON response from the server
-            interactionResults.innerHTML = ''; // Clear previous interaction results
-
-            if (data && data.length > 0) {
-                // Loop through the interactions and display each one
-                data.forEach(interaction => {
-                    const resultItem = document.createElement('div');
-                    resultItem.className = 'interaction-item';
-                    resultItem.innerHTML = `
-                        <strong>${interaction.drug_ref_1} - ${interaction.drug_ref_2}:</strong>
-                        <span>${interaction.interaction}</span>
-                    `;
-                    interactionResults.appendChild(resultItem); // Append each result to the results div
-                });
-            } else {
-                interactionResults.innerHTML = '<div>No interactions found.</div>'; // Display message if no interactions found
-            }
-        } catch (error) {
-            console.error('Error checking interactions:', error); // Log any errors to the console
-            interactionResults.innerHTML = '<div>Error checking interactions.</div>'; // Display error message
-        }
+        });
     });
 });
 
@@ -163,7 +110,7 @@ $(document).ready(function () {
         var sideEffectId = $('#sideEffectId').val();
 
         $.ajax({
-            url: 'http://127.0.0.1:8000/predict',
+            url: 'http://api.drugguardian.net/sideEffects',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
