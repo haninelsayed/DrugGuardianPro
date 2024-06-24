@@ -42,7 +42,14 @@ $(document).ready(function() {
             data: formData,
             success: function(data) {
                 alert('Login successful: ' + data.username);
-                // Redirect or perform actions after successful login
+                if (data.username === 'chemOrgUser') { // Example chemical organisation user
+                    window.location.href = 'chemical-org.html';
+                } else if (data.username === 'healthProUser') { // Example healthcare professional user
+                    window.location.href = 'drug-interaction.html';
+                } else {
+                    // Default action if username doesn't match
+                    alert('Unknown user type');
+                }
             },
             error: function() {
                 alert('Login failed');
