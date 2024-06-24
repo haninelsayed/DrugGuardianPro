@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         try {
             // Send a POST request to the backend with the list of drugs
-            const response = await fetch('http://api.drugguardian.net/check_interaction', {
+            const response = await fetch('http://api.drugguardian.net/interaction', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
