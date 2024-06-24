@@ -85,7 +85,7 @@ $(document).ready(function() {
         const formData = new FormData(this); // Create a FormData object from the form
 
         $.ajax({
-            url: 'http://api.drugguardian.net//predictSynergy', 
+            url: 'http://api.drugguardian.net/predictSynergy', 
             method: 'POST', // Use POST method
             data: formData, // Send the form data
             processData: false, // Do not process data
